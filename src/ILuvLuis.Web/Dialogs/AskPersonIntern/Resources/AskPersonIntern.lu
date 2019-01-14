@@ -1,0 +1,16 @@
+# Ask-Person-Intern
+- Quiero el interno de {employeeName=gaston} de {department=desarrollo}
+- Quiero el interno de {employeeName=gaston cerioni}
+- Dame el interno de {employeeName=ariel cabrejos} de {department=rrhh}
+- Dame el interno de {employeeName=ariel}
+- Tenés el número interno de {employeeName=gonzalo} de {department=administracion}?
+- Tenés el número interno de {employeeName=fabiana}?
+- Sabes el número interno de {employeeName=florencia} de {department=recruiting}?
+- Sabes el número interno de {employeeName=carla}?
+- Necesito el número interno de {employeeName=federico} de {department=testing}?
+- Tenés el número interno de {employeeName=carlos zapata}?
+- Necesito un numero interno
+- Quiero un numero interno
+
+$employeeName:Simple
+$department:Simple

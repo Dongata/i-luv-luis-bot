@@ -1,0 +1,536 @@
+{
+  "intents": [
+    {
+      "name": "Ask-Person-Intern"
+    },
+    {
+      "name": "Ask-Salary-When"
+    },
+    {
+      "name": "Cancel"
+    },
+    {
+      "name": "ChitChat-Greetings"
+    },
+    {
+      "name": "ChitChat-HowAreYou"
+    },
+    {
+      "name": "ChitChat-WhoAreYou"
+    },
+    {
+      "name": "ChitChat-WhatYoureDoing"
+    },
+    {
+      "name": "ChitChat-Insults"
+    },
+    {
+      "name": "ChitChat-DoYouKnowSiri"
+    }
+  ],
+  "entities": [
+    {
+      "name": "employeeName",
+      "roles": []
+    },
+    {
+      "name": "department",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "regex_entities": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "Quiero el interno de gaston de desarrollo",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 21,
+          "endPos": 26
+        },
+        {
+          "entity": "department",
+          "startPos": 31,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "Quiero el interno de gaston cerioni",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 21,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "Dame el interno de ariel cabrejos de rrhh",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 19,
+          "endPos": 32
+        },
+        {
+          "entity": "department",
+          "startPos": 37,
+          "endPos": 40
+        }
+      ]
+    },
+    {
+      "text": "Dame el interno de ariel",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 19,
+          "endPos": 23
+        }
+      ]
+    },
+    {
+      "text": "Tenés el número interno de gonzalo de administracion?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 27,
+          "endPos": 33
+        },
+        {
+          "entity": "department",
+          "startPos": 38,
+          "endPos": 51
+        }
+      ]
+    },
+    {
+      "text": "Tenés el número interno de fabiana?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 27,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "Sabes el número interno de florencia de recruiting?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 27,
+          "endPos": 35
+        },
+        {
+          "entity": "department",
+          "startPos": 40,
+          "endPos": 49
+        }
+      ]
+    },
+    {
+      "text": "Sabes el número interno de carla?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 27,
+          "endPos": 31
+        }
+      ]
+    },
+    {
+      "text": "Necesito el número interno de federico de testing?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 30,
+          "endPos": 37
+        },
+        {
+          "entity": "department",
+          "startPos": 42,
+          "endPos": 48
+        }
+      ]
+    },
+    {
+      "text": "Tenés el número interno de carlos zapata?",
+      "intent": "Ask-Person-Intern",
+      "entities": [
+        {
+          "entity": "employeeName",
+          "startPos": 27,
+          "endPos": 39
+        }
+      ]
+    },
+    {
+      "text": "Necesito un numero interno",
+      "intent": "Ask-Person-Intern",
+      "entities": []
+    },
+    {
+      "text": "Quiero un numero interno",
+      "intent": "Ask-Person-Intern",
+      "entities": []
+    },
+    {
+      "text": "¿Cuando cobro?",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Cuando cobro",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "en que días cobro",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "en que días cobro?",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "¿en que días cobro?",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Que días me dan mi salario",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "cuando me pagan",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "que días de la semana me pagan",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "que días del més me pagan",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Todavía no me pagaron",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "pagaraprata",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Necesito plata",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Necesito guita",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Necesito biushusha",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Necesito efectivo",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Necesito plata para el dentista",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Todavía no me pagaron!",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Cuanto falta para cobrar",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Dame guita",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "no me dán guita",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "entregá la guita",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "entregá la bishusha",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Give money",
+      "intent": "Ask-Salary-When",
+      "entities": []
+    },
+    {
+      "text": "Cancela",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "Cancelame lo ultimo",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "nah, deja",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "nah deja",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "dejalo ahĂ­",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "hablemos de otra cosa",
+      "intent": "Cancel",
+      "entities": []
+    },
+    {
+      "text": "Hola",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Que tal",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenos días",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenas noches",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenas",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Alo",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Hey",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Aloha",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Hola lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Que tal lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenos días lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenas noches lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Buenas lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Alo lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Hey lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Aloha lucho",
+      "intent": "ChitChat-Greetings",
+      "entities": []
+    },
+    {
+      "text": "Como vá?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "Como andas?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "¿Todo bíen?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "Como vá lucho?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "Como andas lucho?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "¿Todo bíen lucho?",
+      "intent": "ChitChat-HowAreYou",
+      "entities": []
+    },
+    {
+      "text": "Quien sos?",
+      "intent": "ChitChat-WhoAreYou",
+      "entities": []
+    },
+    {
+      "text": "Que sos?",
+      "intent": "ChitChat-WhoAreYou",
+      "entities": []
+    },
+    {
+      "text": "Como te llamas?",
+      "intent": "ChitChat-WhoAreYou",
+      "entities": []
+    },
+    {
+      "text": "Que haces?",
+      "intent": "ChitChat-WhoAreYou",
+      "entities": []
+    },
+    {
+      "text": "Que estás haciendo?",
+      "intent": "ChitChat-WhatYoureDoing",
+      "entities": []
+    },
+    {
+      "text": "Que haces en este momento?",
+      "intent": "ChitChat-WhatYoureDoing",
+      "entities": []
+    },
+    {
+      "text": "Puto",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Weon",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Gato",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Lavatuppers",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Amigo del 911",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Cabrón",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Chinga tu madre",
+      "intent": "ChitChat-Insults",
+      "entities": []
+    },
+    {
+      "text": "Conoces a siri?",
+      "intent": "ChitChat-DoYouKnowSiri",
+      "entities": []
+    },
+    {
+      "text": "Que pensas de siri?",
+      "intent": "ChitChat-DoYouKnowSiri",
+      "entities": []
+    },
+    {
+      "text": "Sos amigo de siri?",
+      "intent": "ChitChat-DoYouKnowSiri",
+      "entities": []
+    }
+  ],
+  "patterns": [],
+  "patternAnyEntities": [],
+  "prebuiltEntities": [],
+  "luis_schema_version": "3.0.0",
+  "versionId": "0.1",
+  "name": "AskPersonIntern",
+  "desc": "",
+  "culture": "es-mx"
+}

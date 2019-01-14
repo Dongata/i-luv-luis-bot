@@ -1,0 +1,28 @@
+{
+    "name": "MainBot",
+    "description": "",
+    "services": [
+      {
+        "type": "endpoint",
+        "appId": "5e3b39b8-c7e7-4d03-88a9-99331ba5ab27",
+        "appPassword": "unxlNMG958punWGQD80$%-(",
+        "endpoint": "https://goiartest.eastus2.cloudapp.azure.com/api/messages",
+        "id": "1",
+        "name": "development"
+      },
+      {
+        "type": "luis",
+        "appId": "709f7180-59f1-4fab-94b3-3a0ff5267bb0",
+        "authoringKey": "aba993eed1384cd9b06f6c45c685c03f",
+        "id": "34",
+        "name": "MainBot",
+        "region": "westus",
+        "subscriptionKey": "aba993eed1384cd9b06f6c45c685c03f",
+        "version": "0.1"
+      }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\repos\\i-luv-luis\\src\\ILuvLuis.Web\\ILuvLuis.bot",
+    "overrides": null
+}
