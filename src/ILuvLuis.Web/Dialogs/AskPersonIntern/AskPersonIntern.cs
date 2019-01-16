@@ -217,7 +217,7 @@ namespace ILuvLuis.Web.Dialogs
             if (users.Count == 1)
             {
                 var user = users.First();
-                var adaptiveCardAttch = CreateAdaptiveCardAttachment(new PersonInternAdaptiveCard(user));
+                var adaptiveCardAttch = new PersonInternAdaptiveCard(user).ToAttachment();
 
                 var reply = turnContext.Activity.CreateReply();
                 reply.Attachments = new List<Attachment>() { adaptiveCardAttch };
@@ -228,16 +228,6 @@ namespace ILuvLuis.Web.Dialogs
             }
 
             return users.Count;
-        }
-        
-        private static Attachment CreateAdaptiveCardAttachment(AdaptiveCard adaptiveCard)
-        {
-            var adaptiveCardAttachment = new Attachment()
-            {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = adaptiveCard,
-            };
-            return adaptiveCardAttachment;
         }
     }
 }

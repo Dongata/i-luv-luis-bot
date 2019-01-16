@@ -7,14 +7,21 @@ namespace ILuvLuis.Web.Entities
 {
     public class OnTurnProperty
     {
+        #region Constants
+
         public const string Luis = "LUIS";
         public const string Card = "CARD";
 
         private static readonly string[] luisEntities =
         {
-            "employeeName",
-            "department"
+            EntityProperty.DateTime,
+            EntityProperty.Department,
+            EntityProperty.EmergencyType,
+            EntityProperty.EmployeeName
+
         };
+
+        #endregion
 
         #region Constructors
 
@@ -80,7 +87,7 @@ namespace ILuvLuis.Web.Entities
             // All cards used by this bot are adaptive cards with the card's 'data' property set to useful information.
             var onTurnProperties = new OnTurnProperty()
             {
-                Type = OnTurnProperty.Card
+                Type = Card
             };
             foreach (var entry in cardValues)
             {

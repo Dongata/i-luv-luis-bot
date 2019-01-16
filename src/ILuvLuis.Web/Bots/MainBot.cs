@@ -1,4 +1,6 @@
 ﻿using ILuvLuis.Web.Dialogs;
+using ILuvLuis.Web.Dialogs.AskEmergencyProc;
+using ILuvLuis.Web.Dialogs.AskHolidayDay;
 using ILuvLuis.Web.Dialogs.DefaultFallbacks;
 using ILuvLuis.Web.Dialogs.Greetings;
 using ILuvLuis.Web.Entities;
@@ -54,6 +56,8 @@ namespace ILuvLuis.Web.Bots
             _dialogSet.Add(new AskSalaryWhen(_onTurnAccessor));
             _dialogSet.Add(new ChitchatDialog(_onTurnAccessor));
             _dialogSet.Add(new AskPersonIntern(_onTurnAccessor, _personInternState, _dialogStateProperties));
+            _dialogSet.Add(new EmergencyProcedureDialog(_onTurnAccessor));
+            _dialogSet.Add(new AskHolidayDayDialog(_onTurnAccessor));
         }
 
         #region Properties
@@ -79,7 +83,7 @@ namespace ILuvLuis.Web.Bots
 
                 var dc = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
 
-                if(turnProperty.Type == OnTurnProperty.Luis && turnProperty?.Intent == "Cancel" && turnProperty?.Score > 0.5f)
+                if (turnProperty.Type == OnTurnProperty.Luis && turnProperty?.Intent == "Cancel" && turnProperty?.Score > 0.5f)
                 {
                     await dc.EndDialogAsync();
                     await turnContext.SendActivityAsync("Ok, no hay drama");
@@ -113,6 +117,14 @@ namespace ILuvLuis.Web.Bots
                                 else if (turnProperty.Intent == "Ask-Person-Intern")
                                 {
                                     await dc.BeginDialogAsync(AskPersonIntern.AskPersonInternId);
+                                }
+                                else if (turnProperty.Intent == "Ask-Emergency-Procedure")
+                                {
+                                    await dc.BeginDialogAsync(EmergencyProcedureDialog.EmergencyProcedureId);
+                                }
+                                else if (turnProperty.Intent == AskHolidayDayDialog.Intent)
+                                {
+                                    await dc.BeginDialogAsync(AskHolidayDayDialog.AskHolidayDayId);
                                 }
                                 else if (turnProperty.Intent.Contains("ChitChat"))
                                 {
