@@ -29,6 +29,20 @@ namespace ILuvLuis.Web.Dialogs.AskHolidayDay
 
         private readonly Dictionary<DateTime, string> _holidays = new Dictionary<DateTime, string>()
         {
+            { new DateTime(2019, 03, 04), "Carnaval" },
+            { new DateTime(2019, 03, 05), "Carnaval" },
+            { new DateTime(2019, 03, 25), "Día Nacional de la Memoria por la Verdad y la Justicia" },
+            { new DateTime(2019, 04, 02), "Día del Veterano y de los Caídos en la Guerra de Malvina" },
+            { new DateTime(2019, 04, 19), "Viernes Santo" },
+            { new DateTime(2019, 05, 01), "Día del Trabajador" },
+            { new DateTime(2019, 05, 25), "Día de la Revolución de Mayo" },
+            { new DateTime(2019, 06, 17), "Día Paso a la Inmortalidad del General Martín Miguel de Güemes" },
+            { new DateTime(2019, 06, 20), "Día Paso a la Inmortalidad del General Manuel Belgrano" },
+            { new DateTime(2019, 07, 09), "Día de la Independencia" },
+            { new DateTime(2019, 08, 17), "Paso a la Inmortalidad del General José de San Martín" },
+            { new DateTime(2019, 10, 12), "Día del Respeto a la Diversidad Cultural" },
+            { new DateTime(2019, 11, 18), "Día de la Soberanía Nacional" },
+            { new DateTime(2019, 12, 08), "Inmaculada Concepción de María" },
             { new DateTime(2019, 12, 24), "Navidad" },
             { DateTime.Now.Date.AddDays(1), "Feriado mañanistico" }
         };
