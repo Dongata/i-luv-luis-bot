@@ -13,6 +13,7 @@ namespace ILuvLuis.Web.Dialogs.Greetings
         #region Constants
 
         public const string ChitchatDialogId = "ChitChat";
+        public const string Intent = "ChitChat";
 
         private const string DefaultDialog = "DefaultDialog";
 
@@ -77,6 +78,10 @@ namespace ILuvLuis.Web.Dialogs.Greetings
                 else if (turnProperty.Intent.Contains("WhatsYourGender"))
                 {
                     await stepContext.Context.SendActivityAsync($"Soy un bot, así que realmente no se en que genero entro");
+                }
+                else if (turnProperty.Intent.Contains("Goodbye"))
+                {
+                    await stepContext.Context.SendActivityAsync($"Chau, que tenga una linda jornada");
                 }
             }
 

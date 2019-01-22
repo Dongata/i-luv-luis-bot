@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div>
+            <div id="bot"></div>
+        </div>
+        <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+        <script>
+            var user = {
+                id: 'user-id',
+                name: 'user name'
+            };
+
+            var dl = new BotChat.DirectLine({
+                token: 'NijajWkN834.cwA.HIs.c22umyfD8DGviGdlIwLbZYIC1rdQL8h9NMSxtYEaPSM',
+                user: user
+            });
+            BotChat.App({
+                user: user,
+                botConnection: Object.assign({}, dl, {
+                        postActivity: activity => {
+                        var newActivity = Object.assign({}, activity, { 
+                            channelData: { "qavantToken": "TokenValue" } 
+                        });
+                        return dl.postActivity(newActivity);
+                    }
+                }),
+                bot: { id: 'bot-id', name: 'bot name' },
+                resize: 'detect'
+            }, document.getElementById("bot"));
+
+            dl.postActivity({
+                from: user,
+                name: 'requestWelcomeDialog',
+                type: 'event',
+                value: ''
+            })
+            .subscribe(function (id) {
+                console.log('"trigger requestWelcomeDialog" sent');
+            });
+        </script>
+    </body>
+</html>

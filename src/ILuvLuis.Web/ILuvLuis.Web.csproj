@@ -23,4 +23,9 @@
     <PackageReference Include="Microsoft.Bot.Configuration" Version="4.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ILuvLuis.Models\ILuvLuis.Models.csproj" />
+    <ProjectReference Include="..\ILuvLuis.Qavant\ILuvLuis.Qavant.csproj" />
+  </ItemGroup>
+
 </Project>

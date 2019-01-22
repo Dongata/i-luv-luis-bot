@@ -13,6 +13,7 @@ namespace ILuvLuis.Web.Dialogs
         private const string AskSalaryWhenDialog = "AskSalaryWhenDialog";
 
         public const string AskSalaryWhenId = "Ask-Salary-When";
+        public const string Intent = "Ask-Salary-When";
 
         private readonly IStatePropertyAccessor<OnTurnProperty> _onTurnProperty;
 

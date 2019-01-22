@@ -35,6 +35,8 @@ namespace ILuvLuis.Web
         {
             services.AddMainBot(Configuration, _hostingEnvironment, _loggerFactory);
 
+            services.AddLuchoServices(Configuration.GetValue<string>("Qavant:Url"));
+
             services.AddLogging(lb =>
             {
                 lb.AddConfiguration(Configuration.GetSection("Logging"));

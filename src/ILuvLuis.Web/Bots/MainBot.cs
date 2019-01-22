@@ -1,4 +1,5 @@
-﻿using ILuvLuis.Web.Dialogs;
+﻿using ILuvLuis.Models.Stores;
+using ILuvLuis.Web.Dialogs;
 using ILuvLuis.Web.Dialogs.AskEmergencyProc;
 using ILuvLuis.Web.Dialogs.AskHolidayDay;
 using ILuvLuis.Web.Dialogs.DefaultFallbacks;
@@ -21,6 +22,8 @@ namespace ILuvLuis.Web.Bots
     /// </summary>
     public class MainBot : IBot
     {
+        #region Constants
+
         public const string OnTurnPropertyName = "onTurnStateProperty";
         public const string PersonInternStateName = "personInternState";
         public const string DialogStateProperty = "dialogStateProperty";
@@ -28,20 +31,34 @@ namespace ILuvLuis.Web.Bots
 
         private const string BotKey = "MainBot";
 
+        #endregion
+
+        #region Services
+
         private readonly BotServices _botServices;
         private readonly DialogSet _dialogSet;
+        private readonly IPersonStore _personStore;
+
+        #endregion
+
+        #region Accessors
 
         private readonly IStatePropertyAccessor<DialogState> _dialogAccessor;
         private readonly IStatePropertyAccessor<OnTurnProperty> _onTurnAccessor;
         private readonly IStatePropertyAccessor<PersonInternState> _personInternState;
         private readonly IStatePropertyAccessor<DialogStateProperties> _dialogStateProperties;
 
-        public MainBot(BotServices botServices, ConversationState conversationState)
+        #endregion
+
+        #region Constructor
+
+        public MainBot(BotServices botServices, ConversationState conversationState, IPersonStore personStore)
         {
             _botServices = botServices ?? throw new ArgumentNullException(nameof(BotServices));
 
             ConversationState = conversationState;
 
+            _personStore = personStore;
             _onTurnAccessor = conversationState.CreateProperty<OnTurnProperty>(OnTurnPropertyName);
             _personInternState = conversationState.CreateProperty<PersonInternState>(PersonInternStateName);
             _dialogAccessor = conversationState.CreateProperty<DialogState>(DialogStateProperty);
@@ -55,10 +72,12 @@ namespace ILuvLuis.Web.Bots
             _dialogSet = new DialogSet(_dialogAccessor);
             _dialogSet.Add(new AskSalaryWhen(_onTurnAccessor));
             _dialogSet.Add(new ChitchatDialog(_onTurnAccessor));
-            _dialogSet.Add(new AskPersonIntern(_onTurnAccessor, _personInternState, _dialogStateProperties));
+            _dialogSet.Add(new AskPerson(_personStore, _onTurnAccessor, _personInternState, _dialogStateProperties));
             _dialogSet.Add(new EmergencyProcedureDialog(_onTurnAccessor));
             _dialogSet.Add(new AskHolidayDayDialog(_onTurnAccessor));
         }
+
+        #endregion
 
         #region Properties
 
@@ -78,15 +97,19 @@ namespace ILuvLuis.Web.Bots
         {
             if (turnContext.Activity.Type == ActivityTypes.Message)
             {
+                //_personStore.Token = (turnContext.Activity.ChannelData as TokenChannelData)?.Token;
+                _personStore.Token = "J6AF2O8xpIuiCD2RHLWCBEPcQCeWaC7jJzJ2J8cD8CfHTBXnQGDaLWu54eWCOOSE5eJnR1DPj1F0vUiq67cNCZ5FPlXdsuORhNXmd04EQKS+NAOQrWFipw9Usn9Nc188R7XK80kundSsjeT5uHulSV25jMxZyzZT4uvDazQG0Eo37JXfKJVwULCjAmrtiMLODWHuRXwITSioTpPafr61kQ==";
+
                 var turnProperty = await DetectIntentAndEntitiesAsync(turnContext);
                 await _onTurnAccessor.SetAsync(turnContext, turnProperty);
 
                 var dc = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
 
-                if (turnProperty.Type == OnTurnProperty.Luis && turnProperty?.Intent == "Cancel" && turnProperty?.Score > 0.5f)
+                if (turnProperty?.Type == OnTurnProperty.Luis && turnProperty?.Intent == "Cancel" && turnProperty?.Score > 0.5f)
                 {
-                    await dc.EndDialogAsync();
                     await turnContext.SendActivityAsync("Ok, no hay drama");
+                    await dc.EndDialogAsync();
+                    return;
                 }
 
                 var results = await dc.ContinueDialogAsync(cancellationToken);
@@ -105,20 +128,19 @@ namespace ILuvLuis.Web.Bots
                         }
                         else
                         {
-
                             await dc.ContinueDialogAsync();
 
                             if (!dc.Context.Responded)
                             {
-                                if (turnProperty.Intent == "Ask-Salary-When")
+                                if (turnProperty.Intent == AskSalaryWhen.Intent)
                                 {
                                     await dc.BeginDialogAsync(AskSalaryWhen.AskSalaryWhenId);
                                 }
-                                else if (turnProperty.Intent == "Ask-Person-Intern")
+                                else if (turnProperty.Intent.Contains(AskPerson.Intent))
                                 {
-                                    await dc.BeginDialogAsync(AskPersonIntern.AskPersonInternId);
+                                    await dc.BeginDialogAsync(AskPerson.AskPersonInternId);
                                 }
-                                else if (turnProperty.Intent == "Ask-Emergency-Procedure")
+                                else if (turnProperty.Intent == EmergencyProcedureDialog.Intent)
                                 {
                                     await dc.BeginDialogAsync(EmergencyProcedureDialog.EmergencyProcedureId);
                                 }
@@ -126,7 +148,7 @@ namespace ILuvLuis.Web.Bots
                                 {
                                     await dc.BeginDialogAsync(AskHolidayDayDialog.AskHolidayDayId);
                                 }
-                                else if (turnProperty.Intent.Contains("ChitChat"))
+                                else if (turnProperty.Intent.Contains(ChitchatDialog.Intent))
                                 {
                                     await dc.BeginDialogAsync(ChitchatDialog.ChitchatDialogId);
                                 }
@@ -139,7 +161,7 @@ namespace ILuvLuis.Web.Bots
                     }
                 }
             }
-            else
+            else if (turnContext.Activity.Type == "requestWelcomeDialog")
             {
                 await turnContext.SendActivityAsync("Hola, me llamo lucho, en que puedo ayudarte");
             }

@@ -18,6 +18,7 @@ namespace ILuvLuis.Web.Dialogs.AskEmergencyProc
         #region Constants
 
         public const string EmergencyProcedureId = "AskEmergencyProcedure";
+        public const string Intent = "Ask-Emergency-Procedure";
 
         private const string EmergencyDialog = "EmergencyDialog";
         private const string EmegencyPrompt = "EmegencyPrompt";
