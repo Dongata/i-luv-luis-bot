@@ -24,22 +24,24 @@ namespace ILuvLuis.Web.Cards
                 });
             }
 
-            TryAddField($"Cumpleañpos: {person.BirthDate.ToString("dd-MM-yyyy")}",
+            TryAddField(
+                "Cumpleaños: {0}",
+                person.BirthDate.ToString("dd-MM-yyyy"),
                 fieldToAccent.NormalizeString() == "birthdate");
 
-            TryAddField($"Area: {person.Area}", fieldToAccent.NormalizeString() == "area");
-            TryAddField($"Interno: {person.Intern}", fieldToAccent.NormalizeString() == "intern");
-            TryAddField($"Móvil: { person.Mobile}", fieldToAccent.NormalizeString() == "mobile");
-            TryAddField($"Telefono: {person.Phone}", fieldToAccent.NormalizeString() == "phone");
-            TryAddField($"Email: {person.Email}", fieldToAccent.NormalizeString() == "email");
-            TryAddField($"Direccion {person.Address}", fieldToAccent.NormalizeString() == "address");
+            TryAddField("Area: {0}", person.Area, fieldToAccent.NormalizeString() == "area");
+            TryAddField("Interno: {0}", person.Intern, fieldToAccent.NormalizeString() == "intern");
+            TryAddField("Móvil: {0}", person.Mobile, fieldToAccent.NormalizeString() == "mobile");
+            TryAddField("Telefono: {0}", person.Phone, fieldToAccent.NormalizeString() == "phone");
+            TryAddField("Email: {0}", person.Email, fieldToAccent.NormalizeString() == "email");
+            TryAddField("Direccion {0}", person.Address, fieldToAccent.NormalizeString() == "address");
         }
 
-        private void TryAddField(string text, bool isAccent = false)
+        private void TryAddField(string pattern, string value, bool isAccent = false)
         {
-            if (!string.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(value))
             {
-                Body.Add(new AdaptiveTextBlock(text)
+                Body.Add(new AdaptiveTextBlock(string.Format(pattern, value))
                 {
                     Separator = true,
                     Color = isAccent ? AdaptiveTextColor.Accent : AdaptiveTextColor.Default

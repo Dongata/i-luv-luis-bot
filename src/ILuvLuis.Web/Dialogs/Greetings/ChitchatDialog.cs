@@ -83,6 +83,22 @@ namespace ILuvLuis.Web.Dialogs.Greetings
                 {
                     await stepContext.Context.SendActivityAsync($"Chau, que tenga una linda jornada");
                 }
+                else if (turnProperty.Intent.Contains("DoYouKnowCortana"))
+                {
+                    await stepContext.Context.SendActivityAsync($"Oh, cortana la tengo alojada acá nomás, mas tarde le mando un saludo");
+                }
+                else if (turnProperty.Intent.Contains("Emoticon"))
+                {
+                    await stepContext.Context.SendActivityAsync($"c:");
+                }
+                else if (turnProperty.Intent.Contains("WhereAreYouFrom"))
+                {
+                    await stepContext.Context.SendActivityAsync($"Ahora mismo estoy alojado en una vm de azure, pero nací de en una idea alocada");
+                }
+                else if (turnProperty.Intent.Contains("ThankYou"))
+                {
+                    await stepContext.Context.SendActivityAsync($"A vos");
+                }
             }
 
             return await stepContext.EndDialogAsync();
@@ -90,7 +106,7 @@ namespace ILuvLuis.Web.Dialogs.Greetings
 
         private string GetMyAge()
         {
-            var timeAlive = DateTime.Now - new DateTime(03, 01, 2019);
+            var timeAlive = DateTime.Now - new DateTime(2019, 01, 03);
 
             if (timeAlive.Days > 365)
             {

@@ -17,7 +17,8 @@ namespace ILuvLuis.Web.Entities
             EntityProperty.DateTime,
             EntityProperty.Department,
             EntityProperty.EmergencyType,
-            EntityProperty.EmployeeName
+            EntityProperty.EmployeeName,
+            EntityProperty.LegalTreatyType
 
         };
 

@@ -4,11 +4,13 @@ using ILuvLuis.Web.Dialogs.AskEmergencyProc;
 using ILuvLuis.Web.Dialogs.AskHolidayDay;
 using ILuvLuis.Web.Dialogs.DefaultFallbacks;
 using ILuvLuis.Web.Dialogs.Greetings;
+using ILuvLuis.Web.Dialogs.LegalTreatyTransport;
 using ILuvLuis.Web.Entities;
 using ILuvLuis.Web.Services;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -38,6 +40,7 @@ namespace ILuvLuis.Web.Bots
         private readonly BotServices _botServices;
         private readonly DialogSet _dialogSet;
         private readonly IPersonStore _personStore;
+        private readonly ILogger<MainBot> _logger;
 
         #endregion
 
@@ -52,11 +55,13 @@ namespace ILuvLuis.Web.Bots
 
         #region Constructor
 
-        public MainBot(BotServices botServices, ConversationState conversationState, IPersonStore personStore)
+        public MainBot(BotServices botServices, ConversationState conversationState, IPersonStore personStore, ILogger<MainBot> logger)
         {
             _botServices = botServices ?? throw new ArgumentNullException(nameof(BotServices));
 
             ConversationState = conversationState;
+
+            _logger = logger;
 
             _personStore = personStore;
             _onTurnAccessor = conversationState.CreateProperty<OnTurnProperty>(OnTurnPropertyName);
@@ -75,6 +80,7 @@ namespace ILuvLuis.Web.Bots
             _dialogSet.Add(new AskPerson(_personStore, _onTurnAccessor, _personInternState, _dialogStateProperties));
             _dialogSet.Add(new EmergencyProcedureDialog(_onTurnAccessor));
             _dialogSet.Add(new AskHolidayDayDialog(_onTurnAccessor));
+            _dialogSet.Add(new LegalTreatyBetweenCountriesDialog(_onTurnAccessor));
         }
 
         #endregion
@@ -95,15 +101,19 @@ namespace ILuvLuis.Web.Bots
         /// <returns></returns>
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
+            var dc = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
+
             if (turnContext.Activity.Type == ActivityTypes.Message)
             {
-                //_personStore.Token = (turnContext.Activity.ChannelData as TokenChannelData)?.Token;
-                _personStore.Token = "J6AF2O8xpIuiCD2RHLWCBEPcQCeWaC7jJzJ2J8cD8CfHTBXnQGDaLWu54eWCOOSE5eJnR1DPj1F0vUiq67cNCZ5FPlXdsuORhNXmd04EQKS+NAOQrWFipw9Usn9Nc188R7XK80kundSsjeT5uHulSV25jMxZyzZT4uvDazQG0Eo37JXfKJVwULCjAmrtiMLODWHuRXwITSioTpPafr61kQ==";
+                /*
+                var jobject = turnContext.Activity.ChannelData as JObject;
+                _personStore.Token = jobject.ToObject<TokenChannelData>().QavantToken;
+                */
+
+                _personStore.Token = "J6AF2O8xpIuiCD2RHLWCBEPcQCeWaC7jJzJ2J8cD8CfHTBXnQGDaLWu54eWCOOSEGJGA/p8V7VB0vUiq67cNCQxGx+8u/U1RhNXmd04EQKS+NAOQrWFipx0BwWTyMZl4nhYTjfhAuu4R7mqqcNGrVG7MCXQSYrC4JdtaJxYQ9WpgBPa3zgxsGR5tt9V1f4xFlPc+YzTHgxIxPljxbs+SMA==";
 
                 var turnProperty = await DetectIntentAndEntitiesAsync(turnContext);
                 await _onTurnAccessor.SetAsync(turnContext, turnProperty);
-
-                var dc = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
 
                 if (turnProperty?.Type == OnTurnProperty.Luis && turnProperty?.Intent == "Cancel" && turnProperty?.Score > 0.5f)
                 {
@@ -122,7 +132,7 @@ namespace ILuvLuis.Web.Bots
                 {
                     if (turnProperty.Type == OnTurnProperty.Luis)
                     {
-                        if (turnProperty.Score < 0.5f)
+                        if (turnProperty.Score < 0.4f)
                         {
                             await turnContext.SendActivityAsync(new DefaultFallback().Text);
                         }
@@ -152,6 +162,10 @@ namespace ILuvLuis.Web.Bots
                                 {
                                     await dc.BeginDialogAsync(ChitchatDialog.ChitchatDialogId);
                                 }
+                                else if (turnProperty.Intent.Contains(LegalTreatyBetweenCountriesDialog.Intent))
+                                {
+                                    await dc.BeginDialogAsync(LegalTreatyBetweenCountriesDialog.DialogId);
+                                }
                                 else
                                 {
                                     await turnContext.SendActivityAsync(new DefaultFallback(), cancellationToken);
@@ -163,7 +177,15 @@ namespace ILuvLuis.Web.Bots
             }
             else if (turnContext.Activity.Type == "requestWelcomeDialog")
             {
-                await turnContext.SendActivityAsync("Hola, me llamo lucho, en que puedo ayudarte");
+
+                if (string.IsNullOrEmpty(turnContext.Activity.From.Name))
+                {
+                    await turnContext.SendActivityAsync($"Hola, me llamo lucho, tu asistente virtual, ¿en que puedo ayudarte?");
+                }
+                else
+                {
+                    await turnContext.SendActivityAsync($"Hola {turnContext.Activity.From.Name}, me llamo lucho, tu asistente virtual, ¿en que puedo ayudarte?");
+                }
             }
         }
 

@@ -12,12 +12,12 @@
     },
     {
       "type": "luis",
-      "appId": "709f7180-59f1-4fab-94b3-3a0ff5267bb0",
-      "authoringKey": "aba993eed1384cd9b06f6c45c685c03f",
+      "appId": "c919cc4f-eff7-41a4-838f-ad788e80be4d",
+      "authoringKey": "06336184473f49119d23114b109ff434",
       "id": "34",
       "name": "MainBot",
-      "region": "westus",
-      "subscriptionKey": "aba993eed1384cd9b06f6c45c685c03f",
+      "region": "centralus",
+      "subscriptionKey": "06336184473f49119d23114b109ff434",
       "version": "0.1"
     },
     {
@@ -27,6 +27,14 @@
       "appId": "",
       "appPassword": "",
       "id": "189"
+    },
+    {
+      "type": "endpoint",
+      "appId": "7b33c7b2-1887-42c7-9a7d-f21fd0b092a2",
+      "appPassword": "qlhTMSIW42=ykrhNE564(_%",
+      "endpoint": "https://1a976587.ngrok.io/api/messages",
+      "id": "1",
+      "name": "localhost1"
     }
   ],
   "padlock": "",

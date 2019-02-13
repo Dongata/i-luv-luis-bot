@@ -7,6 +7,7 @@
         public const string EmployeeName = "employeeName";
         public const string Department = "department";
         public const string EmergencyType = "emergency_type";
+        public const string LegalTreatyType = "legal_treaty_type";
         public const string DateTime = "datetime";
 
         #endregion

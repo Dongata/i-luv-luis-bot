@@ -33,15 +33,16 @@ namespace ILuvLuis.Web
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMainBot(Configuration, _hostingEnvironment, _loggerFactory);
-
-            services.AddLuchoServices(Configuration.GetValue<string>("Qavant:Url"));
-
             services.AddLogging(lb =>
             {
                 lb.AddConfiguration(Configuration.GetSection("Logging"));
                 lb.AddFile(o => o.RootPath = AppContext.BaseDirectory);
             });
+
+
+            services.AddMainBot(Configuration, _hostingEnvironment, _loggerFactory);
+
+            services.AddLuchoServices(Configuration.GetValue<string>("Qavant:Url"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
