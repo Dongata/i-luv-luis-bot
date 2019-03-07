@@ -175,7 +175,7 @@ namespace ILuvLuis.Web.Bots
                     }
                 }
             }
-            else if (turnContext.Activity.Type == "requestWelcomeDialog")
+            else if (turnContext.Activity.Name == "requestWelcomeDialog")
             {
 
                 if (string.IsNullOrEmpty(turnContext.Activity.From.Name))
