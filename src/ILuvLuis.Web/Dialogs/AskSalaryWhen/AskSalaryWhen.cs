@@ -9,7 +9,7 @@ namespace ILuvLuis.Web.Dialogs
 {
     public class AskSalaryWhen : ComponentDialog
     {
-        private const string Response = "El cobro de sueldo se realiza del 1 al 10";
+        private const string Response = "Se cobra el tercer (3) día hábil antes de que termine el mes";
         private const string AskSalaryWhenDialog = "AskSalaryWhenDialog";
 
         public const string AskSalaryWhenId = "Ask-Salary-When";
