@@ -43,8 +43,7 @@ namespace ILuvLuis.Web.Dialogs.AskHolidayDay
             { new DateTime(2019, 10, 12), "Día del Respeto a la Diversidad Cultural" },
             { new DateTime(2019, 11, 18), "Día de la Soberanía Nacional" },
             { new DateTime(2019, 12, 08), "Inmaculada Concepción de María" },
-            { new DateTime(2019, 12, 24), "Navidad" },
-            { DateTime.Now.Date.AddDays(1), "Feriado mañanistico" }
+            { new DateTime(2019, 12, 24), "Navidad" }
         };
 
         #endregion
